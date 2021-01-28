@@ -23,15 +23,10 @@ if [[ $OSTYPE == "linux-gnu" && $CLOUD_SHELL == true ]]; then
     echo -e "\nMultiple tasks are running asynchronously to setup your environment.  It may appear frozen, but you can check the logs in $WORK_DIR for additional details in another terminal window." 
 
     ./gke/provision-gke.sh &> ${WORK_DIR}/provision-gke.log &
-    ./connect-hub/provision-remote-gce.sh &> ${WORK_DIR}/provision-remote.log &
     wait
 
     kubectx central && ./config-management/install-config-operator.sh
-    kubectx remote && ./config-management/install-config-operator.sh
 
-    ./hybrid-multicluster/istio-install.sh
-
-    #./service-mesh/enable-service-mesh.sh
     ./service-mesh/enable-asm-beta.sh
 else
     echo "This has only been tested in GCP Cloud Shell.  Only Linux (debian) is supported".
