@@ -20,7 +20,7 @@ export WORK_DIR=${WORK_DIR:="${PWD}/workdir"}
 
 export CLUSTER_NAME_BASE="central"
 export CLUSTER_NAME=$CLUSTER_NAME_BASE.k8s.local
-export KUBECONFIG=$WORK_DIR/$CLUSTER_NAME.context
+export KUBECONFIG=$WORK_DIR/$CLUSTER_NAME_BASE.context
 
 
 export GKE_CONNECT_SA=anthos-connect
