@@ -61,12 +61,12 @@ gcloud iam service-accounts keys create $GKE_SA_CREDS --project=$PROJECT \
 gcloud container hub memberships register $CLUSTER_NAME_BASE \
   --project=$PROJECT \
   --context=$CLUSTER_NAME \
-  --kubeconfig=$REMOTE_KUBECONFIG \
+  --kubeconfig=$KUBECONFIG \
   --service-account-key-file=$GKE_SA_CREDS 
 
 
 ## Create Service Account for use in Login Step
-export KSA=remote-admin-sa
+export KSA=central-admin-sa
 kubectl create serviceaccount $KSA
 kubectl create clusterrolebinding ksa-admin-binding --clusterrole cluster-admin --serviceaccount default:$KSA
 
