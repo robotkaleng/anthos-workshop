@@ -29,7 +29,7 @@ export GKE_SA_CREDS=$WORK_DIR/$GKE_CONNECT_SA-creds.json
 
 
 echo "### "
-echo "### Prepare remote cluster for Hub"
+echo "### Prepare Central cluster for Hub"
 echo "### "
 
 
