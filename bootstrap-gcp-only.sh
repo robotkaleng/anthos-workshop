@@ -23,6 +23,7 @@ if [[ $OSTYPE == "linux-gnu" && $CLOUD_SHELL == true ]]; then
     echo -e "\nMultiple tasks are running asynchronously to setup your environment.  It may appear frozen, but you can check the logs in $WORK_DIR for additional details in another terminal window." 
 
     ./gke/provision-gke.sh &> ${WORK_DIR}/provision-gke.log &
+    ./connect-hub/connect-hub-central.sh
     wait
 
     kubectx central && ./config-management/install-config-operator.sh
