@@ -18,9 +18,10 @@
 export PROJECT=$(gcloud config get-value project)
 export WORK_DIR=${WORK_DIR:="${PWD}/workdir"}
 
-export CLUSTER_NAME_BASE="central"
-export CLUSTER_NAME=$CLUSTER_NAME_BASE.k8s.local
-export KUBECONFIG=$WORK_DIR/$CLUSTER_NAME_BASE.context
+#export CLUSTER_NAME_BASE="central"
+export CLUSTER_NAME="central"
+export CLUSTER_ZONE="us-central1-b"
+export KUBECONFIG=$WORK_DIR/$CLUSTER_NAME.context
 
 
 export GKE_CONNECT_SA=anthos-connect
@@ -37,7 +38,7 @@ echo "### "
 ### Access hub alpha, gcloud 244+ includes hub commands
 
 # Switch to central Context
-kubectx $CLUSTER_NAME_BASE
+kubectx $CLUSTER_NAME
 
 
 ## Provision the GKE Connect Service Account & Access
@@ -58,10 +59,9 @@ gcloud iam service-accounts keys create $GKE_SA_CREDS --project=$PROJECT \
 
 
 ### Connect Cluster to Hub
-gcloud container hub memberships register $CLUSTER_NAME_BASE \
+gcloud container hub memberships register $CLUSTER_NAME \
   --project=$PROJECT \
-  --context=$CLUSTER_NAME \
-  --kubeconfig=$KUBECONFIG \
+  --gke-cluster=$CLUSTER_ZONE/$CLUSTER_NAME \
   --service-account-key-file=$GKE_SA_CREDS 
 
 
