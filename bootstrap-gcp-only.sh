@@ -26,9 +26,9 @@ if [[ $OSTYPE == "linux-gnu" && $CLOUD_SHELL == true ]]; then
     ./connect-hub/connect-hub-central.sh
     wait
 
-    kubectx central && ./config-management/install-config-operator.sh
+    #kubectx central && ./config-management/install-config-operator.sh
 
-    ./service-mesh/enable-asm-beta.sh
+    #./service-mesh/enable-asm-beta.sh
 else
     echo "This has only been tested in GCP Cloud Shell.  Only Linux (debian) is supported".
 fi
